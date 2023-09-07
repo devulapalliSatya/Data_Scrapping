@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@vercel/postgres": "^0.4.1",
+    "chrome-aws-lambda": "6.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "node-dependency-injection": "^3.1.0",
@@ -32,12 +33,13 @@
     "pg": "^8.11.3",
     "pre-commit": "^1.2.2",
     "puppeteer": "^21.1.0",
+    "puppeteer-core": "6.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
     "typeorm": "^0.3.17",
-    "vercel": "^24.2.4"
+    "vercel": "^32.1.0"
   }
 }

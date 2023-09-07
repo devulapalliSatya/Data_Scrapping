@@ -13,18 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startBrowser = void 0;
-const puppeteer_extra_1 = __importDefault(require("puppeteer-extra"));
+//import * as puppeteer from "puppeteer";
+//import puppeteerExtra from "puppeteer-extra";
+//import puppeteer from "puppeteer-core";
+const chrome_aws_lambda_1 = __importDefault(require("chrome-aws-lambda"));
 function startBrowser() {
     return __awaiter(this, void 0, void 0, function* () {
         let browser;
         try {
             console.log("Opening the browser......");
-            browser = yield puppeteer_extra_1.default.launch({
-                headless: false,
-                defaultViewport: null,
-                // userDataDir: './myUserDataDir',
-                args: ["--disable-setuid-sandbox"],
-                'ignoreHTTPSErrors': true
+            browser = yield chrome_aws_lambda_1.default.puppeteer.launch({
+                args: chrome_aws_lambda_1.default.args,
+                defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
+                executablePath: yield chrome_aws_lambda_1.default.executablePath,
+                headless: chrome_aws_lambda_1.default.headless,
+                ignoreHTTPSErrors: true,
             });
             // const newpage = await browser.newPage();
             return browser;
