@@ -1,13 +1,11 @@
 import * as puppeteer from "puppeteer";
-import puppeteerExtra from "puppeteer-extra";
-import Stealth from 'puppeteer-extra-plugin-stealth';
+// import puppeteerExtra from "puppeteer-extra";
 
-puppeteerExtra.use(Stealth());
 export async function startBrowser() {
     let browser;
     try {
         console.log("Opening the browser......");
-         browser = await puppeteerExtra.launch({
+         browser = await puppeteer.launch({
             headless: false,
             defaultViewport: null,
             // userDataDir: './myUserDataDir',

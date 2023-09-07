@@ -413,6 +413,8 @@ class Controller {
             try {
                 let browserInstance = yield (0, browser_1.startBrowser)();
                 const vestiaireUrls = yield pageScraper_1.scraperObject.vestiaireScraper(browserInstance);
+                if (!vestiaireUrls.length)
+                    return (0, response_1.sendResponse)(res, 404, "No urls found.", null);
                 const url = new Url_1.Urls();
                 url.website_name = 'https://us.vestiairecollective.com/';
                 url.urls = vestiaireUrls;
@@ -453,7 +455,8 @@ class Controller {
                     console.log("======", scrappedUrls.length, "======");
                 }
                 yield (browserInstance === null || browserInstance === void 0 ? void 0 : browserInstance.close());
-                console.log("controller===", thredupUrls.length);
+                if (!thredupUrls.length)
+                    return (0, response_1.sendResponse)(res, 404, "No urls found.", null);
                 const url = new Url_1.Urls();
                 url.website_name = 'https://www.thredup.com';
                 url.urls = thredupUrls;
@@ -474,6 +477,8 @@ class Controller {
             try {
                 let browserInstance = yield (0, browser_1.startBrowser)();
                 const lampooUrls = yield pageScraper_1.scraperObject.lampooScraper(browserInstance);
+                if (!lampooUrls.length)
+                    return (0, response_1.sendResponse)(res, 404, "No urls found.", null);
                 const url = new Url_1.Urls();
                 url.website_name = 'https://www.lampoo.com';
                 url.urls = lampooUrls;
@@ -494,6 +499,8 @@ class Controller {
             try {
                 let browserInstance = yield (0, browser_1.startBrowser)();
                 const luxuryUrls = yield pageScraper_1.scraperObject.luxuryScraper(browserInstance);
+                if (!luxuryUrls.length)
+                    return (0, response_1.sendResponse)(res, 404, "No urls found.", null);
                 const url = new Url_1.Urls();
                 url.website_name = 'https://theluxurycloset.com';
                 url.urls = luxuryUrls;
@@ -529,6 +536,8 @@ class Controller {
                     console.log("======", scrappedUrls.length, theRealUrls.length, "======");
                     yield (browserInstance === null || browserInstance === void 0 ? void 0 : browserInstance.close());
                 }
+                if (!theRealUrls.length)
+                    return (0, response_1.sendResponse)(res, 404, "No urls found.", null);
                 theRealUrls = [...new Set(theRealUrls)];
                 const url = new Url_1.Urls();
                 url.website_name = 'https://www.therealreal.com';
