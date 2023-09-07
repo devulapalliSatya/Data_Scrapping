@@ -17,6 +17,9 @@ exports.AppDataSource = new typeorm_1.DataSource({
     synchronize: true,
     logging: false,
     entities: [Url_1.Urls, ProductUrls_1.Product_urls, Product_1.Products],
+    ssl: {
+        ca: process.env.SSL_CERT,
+    },
     migrations: [],
     subscribers: [],
 });

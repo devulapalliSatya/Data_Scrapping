@@ -15,6 +15,9 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [Urls, Product_urls, Products],
+    ssl: {
+        ca: process.env.SSL_CERT,
+    },
     migrations: [],
     subscribers: [],
 });
