@@ -52,7 +52,8 @@ function startBrowser() {
                     args: [...chrome_aws_lambda_1.default.args, "--hide-scrollbars", "--disable-web-security"],
                     defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
                     executablePath: yield chrome_aws_lambda_1.default.executablePath,
-                    ignoreHTTPSErrors: true
+                    ignoreHTTPSErrors: true,
+                    ignoreDefaultArgs: ['--disable-extensions']
                 });
                 const newpage = yield browser.newPage();
                 // Return the browser object here if needed
