@@ -1,6 +1,9 @@
 import chromium from "chrome-aws-lambda";
-//import puppeteer from 'puppeteer-core';
 import * as puppeteer from "puppeteer";
+import  PuppeteerExtra from "puppeteer-extra";
+import Stealth from 'puppeteer-extra-plugin-stealth';
+
+PuppeteerExtra.use(Stealth());
 
 export async function startBrowser() {
     let browser;
@@ -17,10 +20,8 @@ export async function startBrowser() {
          
         console.log("Opening the browser......");
         let browser = await puppeteer.launch(options)
-        return browser;
-    
-        // const newpage = await browser.newPage();
-       
+        const newpage = await browser.newPage();
+        return browser; 
     }  
     }catch (err) {
         console.log("Could not create a browser instance => : ", err);

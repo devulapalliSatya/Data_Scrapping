@@ -37,8 +37,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startBrowser = void 0;
 const chrome_aws_lambda_1 = __importDefault(require("chrome-aws-lambda"));
-//import puppeteer from 'puppeteer-core';
 const puppeteer = __importStar(require("puppeteer"));
+const puppeteer_extra_1 = __importDefault(require("puppeteer-extra"));
+const puppeteer_extra_plugin_stealth_1 = __importDefault(require("puppeteer-extra-plugin-stealth"));
+puppeteer_extra_1.default.use((0, puppeteer_extra_plugin_stealth_1.default)());
 function startBrowser() {
     return __awaiter(this, void 0, void 0, function* () {
         let browser;
@@ -53,8 +55,8 @@ function startBrowser() {
                 };
                 console.log("Opening the browser......");
                 let browser = yield puppeteer.launch(options);
+                const newpage = yield browser.newPage();
                 return browser;
-                // const newpage = await browser.newPage();
             }
         }
         catch (err) {
