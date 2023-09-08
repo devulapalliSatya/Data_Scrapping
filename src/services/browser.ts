@@ -1,4 +1,4 @@
-import chromium from "chrome-aws-lambda";
+import chrome from "chrome-aws-lambda";
 import * as puppeteer1 from "puppeteer";
 import puppeteer from 'puppeteer-core';
 // import  PuppeteerExtra from "puppeteer-extra";
@@ -13,9 +13,9 @@ export async function startBrowser() {
     try {
         if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
             let browser = await puppeteer.launch({
-                args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-                defaultViewport: chromium.defaultViewport,
-                executablePath: await chromium.executablePath,
+                args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+                defaultViewport: chrome.defaultViewport,
+                executablePath: await chrome.executablePath,
                 headless: 'new',
                 ignoreHTTPSErrors: true,
             });
