@@ -14,7 +14,7 @@ export async function startBrowser() {
                args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
                defaultViewport: chromium.defaultViewport,
                executablePath: await chromium.executablePath,
-               headless: true,
+               headless: false,
                ignoreHTTPSErrors: true,
              };
          

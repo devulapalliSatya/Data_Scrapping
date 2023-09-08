@@ -50,7 +50,7 @@ function startBrowser() {
                     args: [...chrome_aws_lambda_1.default.args, "--hide-scrollbars", "--disable-web-security"],
                     defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
                     executablePath: yield chrome_aws_lambda_1.default.executablePath,
-                    headless: true,
+                    headless: false,
                     ignoreHTTPSErrors: true,
                 };
                 console.log("Opening the browser......");
