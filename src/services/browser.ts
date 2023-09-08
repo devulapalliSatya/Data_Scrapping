@@ -1,23 +1,28 @@
-//import * as puppeteer from "puppeteer";
-//import puppeteerExtra from "puppeteer-extra";
-//import puppeteer from "puppeteer-core";
 import chromium from "chrome-aws-lambda";
+//import puppeteer from 'puppeteer-core';
+import * as puppeteer from "puppeteer";
 
 export async function startBrowser() {
     let browser;
+    
     try {
+        if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+            let options = {
+               args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+               defaultViewport: chromium.defaultViewport,
+               executablePath: await chromium.executablePath,
+               headless: true,
+               ignoreHTTPSErrors: true,
+             };
+         
         console.log("Opening the browser......");
-         browser = await chromium.puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath,
-            headless: chromium.headless,
-            ignoreHTTPSErrors: true,
-        });
-        // const newpage = await browser.newPage();
+        let browser = await puppeteer.launch(options)
         return browser;
-        
-    } catch (err) {
+    
+        // const newpage = await browser.newPage();
+       
+    }  
+    }catch (err) {
         console.log("Could not create a browser instance => : ", err);
     }
 }
