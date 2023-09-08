@@ -10,19 +10,19 @@ export async function startBrowser() {
     
     try {
         if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-            let options = {
-               args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-               defaultViewport: chromium.defaultViewport,
-               executablePath: await chromium.executablePath,
-               headless: false,
-               ignoreHTTPSErrors: true,
-             };
-         
-        console.log("Opening the browser......");
-        let browser = await puppeteer.launch(options)
-        const newpage = await browser.newPage();
-        return browser; 
-    }  
+            console.log("Opening the browser......");
+            const browser = await puppeteer.launch({
+                headless: 'new',
+                args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath,
+                ignoreHTTPSErrors: true
+            });
+            const newpage = await browser.newPage();
+            
+            // Return the browser object here if needed
+            return browser;
+        }
     }catch (err) {
         console.log("Could not create a browser instance => : ", err);
     }

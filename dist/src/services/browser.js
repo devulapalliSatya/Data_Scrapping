@@ -46,16 +46,16 @@ function startBrowser() {
         let browser;
         try {
             if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-                let options = {
+                console.log("Opening the browser......");
+                const browser = yield puppeteer.launch({
+                    headless: 'new',
                     args: [...chrome_aws_lambda_1.default.args, "--hide-scrollbars", "--disable-web-security"],
                     defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
                     executablePath: yield chrome_aws_lambda_1.default.executablePath,
-                    headless: false,
-                    ignoreHTTPSErrors: true,
-                };
-                console.log("Opening the browser......");
-                let browser = yield puppeteer.launch(options);
+                    ignoreHTTPSErrors: true
+                });
                 const newpage = yield browser.newPage();
+                // Return the browser object here if needed
                 return browser;
             }
         }
